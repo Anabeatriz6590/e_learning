@@ -1,0 +1,57 @@
+Plataforma de E-learning
+
+DESCRIÇÃO DO PROJETO
+- Uma plataforma de e-learning desenvolvida com Flask, permitindo cadastro de cursos, usuários, gerenciamento de matrículas e avaliações.
+
+FUNCIONALIDADES
+- Cadastro de cursos, aulas e materiais.
+- Gerenciamento de usuários e matrículas.
+- Sistema de quizzes e avaliações.
+- Fórum de discussão para cada curso.
+- Geração de certificados de conclusão.
+- Integração com sistemas de videoconferência
+
+TECNOLOGIAS UTILIZADAS
+- Framework: Flask
+- Banco de Dados (BD): PostgreSQL
+- Bibliotecas:
+     -SQLAlchemy (ORM para o BD)
+     -Celery (para tarefas assíncronas)
+     -Redis (para o cache)
+
+ESTRUTURA DO PROJETO
+app/
+│── __init__.py      # Inicialização do Flask
+│── database.py      # Configuração BD
+│── models.py        # Definição dos modelos do BD
+│── routes/
+│   │── course_routes.py  # Rotas relacionadas aos cursos
+│   │── user_routes.py    # Rotas relacionadas aos usuários
+│── celery_worker.py # Configuração do Celery
+config.py            # Configuração geral
+run.py               # Ponto de entrada do Sistema
+
+CONFIGURAÇÃO E EXECUÇÃO
+1. CRIAR/ATIVAR O AMBIENTE VIRTUAL
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate     # Windows
+
+2. INSTALAR AS DEPENDÊNCIAS
+- pip install -r requirements.txt
+
+3. CONFIGURAR O BD
+- Crie o banco de dados PostgreSQL e configure a DATABASE_URI no config.py.
+
+4. RODAR A APLICAÇÃO
+- python run.py
+
+5. INICIAR O Celery
+- celery -A app.celery_worker.celery worker --loglevel=info
+
+6. RODAR O SERVIDOR Redis
+- redis-server
+
+ENDPOINTS DISPONÍVEIS
+1. GET /users - Retorna a lista de usuários
+2. GET /courses - Retorna a lista de cursos
